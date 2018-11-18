@@ -52,7 +52,6 @@ export default class InvoicesPage extends Component {
                                 <th>Termin płatności</th>
                                 <th>Netto</th>
                                 <th>Brutto</th>
-                                <th>Do zapłaty</th>
                               </tr>
                             </thead>
                             <tbody>
