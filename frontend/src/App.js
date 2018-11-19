@@ -7,6 +7,7 @@ import MainPage from "./components/MainPage";
 import ClientsPage from "./components/ClientsPage";
 import InvoicesPage from "./components/InvoicesPage";
 import AdminPanelPage from "./components/AdminPanelPage";
+import AddCompanyPage from "./components/AddCompanyPage";
 
 export default class App extends Component {
     render() {
@@ -18,6 +19,7 @@ export default class App extends Component {
                     <Route exact path='/clients' component={ClientsPage}/>
                     <Route exact path='/invoices' component={InvoicesPage}/>
                     <Route exact path='/admin-panel' component={AdminPanelPage}/>
+                    <Route exact path='/add-company' component={AddCompanyPage}/>
                 </Switch>
             </div>
         );

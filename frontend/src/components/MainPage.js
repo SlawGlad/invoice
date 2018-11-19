@@ -13,6 +13,7 @@ export default class MainPage extends Component {
                 <p align="center"> Dzięki naszemu programowi możesz sprawnie zarządzać swoimi klientami oraz archiwem faktur.</p>
                 <p align="center"> Wystawianie faktur jeszcze nigdy nie było tak proste!</p>
                 </i>
+
             </div>
         );
     }

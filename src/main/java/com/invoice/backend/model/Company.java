@@ -16,9 +16,9 @@ public class Company {
     private String postalCode;
     private String country;
     private String phone;
-    private String mail;
     private String nip;
     private String accountNumber;
+    private String mail;
 
     @ManyToMany
     Set<CompanyClient> companyClients;

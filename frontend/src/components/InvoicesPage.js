@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Button, Card, CardBody, CardHeader, Col, Form, ListGroup,Table} from "reactstrap";
-import ClientsFilterDropdown from "./ClientsFilterDropdown";
+
 
 export default class InvoicesPage extends Component {
     constructor(props) {
@@ -10,12 +10,8 @@ export default class InvoicesPage extends Component {
             client: '',
         };
 
-        this.handleClientsFilterChange = this.handleClientsFilterChange.bind(this);
     }
 
-    handleClientsFilterChange(e) {
-        this.setState({client: e.target.value})
-    }
 
     render() {
         return (

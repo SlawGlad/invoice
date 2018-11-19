@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {Button, Card, CardBody, CardHeader, Col, Form, ListGroup,Table} from "reactstrap";
-import ClientsFilterDropdown from "./ClientsFilterDropdown";
 
 export default class ClientsPage extends Component {
     constructor(props) {
@@ -10,12 +9,9 @@ export default class ClientsPage extends Component {
             client: '',
         };
 
-        this.handleClientsFilterChange = this.handleClientsFilterChange.bind(this);
     }
 
-    handleClientsFilterChange(e) {
-        this.setState({client: e.target.value})
-    }
+
 
     render() {
         return (
@@ -31,7 +27,8 @@ export default class ClientsPage extends Component {
                                 </Form>
                                 <br/>
                                 <Button color="success">Załaduj kontrahentów</Button>{'   '}
-                                <Button color="primary">Dodaj kontrahenta</Button>
+                                <Button color="success">Dodaj kontrahenta</Button>{'   '}
+                                <Button color="info" href="/add-company">Dodaj firmę</Button>
                             </div>
                         </CardBody>
                     </Card>

@@ -16,8 +16,8 @@ public class CompanyClient {
     private String postalCode;
     private String country;
     private String phone;
-    private String mail;
     private String nip;
+    private String mail;
 
     @ManyToMany(mappedBy = "companyClients")
     Set<Company> companies;
