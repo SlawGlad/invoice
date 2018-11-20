@@ -1,17 +1,40 @@
 import React, {Component} from "react";
 import {Button, Card, CardBody, CardHeader, Col, Form, ListGroup,Table} from "reactstrap";
+import CompanyFilterDropdown from "./CompanyFilterDropdown";
+import CompanyClientController from "../controllers/CompanyClientController";
 
 export default class ClientsPage extends Component {
     constructor(props) {
         super(props);
+        this.companyClientsController = new CompanyClientController();
 
         this.state = {
             client: '',
+            company: '',
+            companies: [],
         };
 
+        this.handleCompanyChange = this.handleCompanyChange.bind(this);
     }
 
+    handleCompanyChange(e) {
+        this.setState({company: e.target.value})
+    }
 
+    getAllCompanies(company) {
+        let self = this;
+        this.companyClientsController.getAllCompanyClients(company)
+            .then(response => {
+                self.setState(
+                    {
+                        companies: response.data
+                    }
+                )
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
 
     render() {
         return (
@@ -23,12 +46,15 @@ export default class ClientsPage extends Component {
                         <CardBody>
                             <div className="filter-component">
                                 <Form>
-
+                                <CompanyFilterDropdown labelName='Firma' companyLabelWidth={1}
+                                                       companyInputWidth={4} value={this.state.company}
+                                                       onChangeValue={this.handleCompanyChange}/>
+                                <Button color="success" onClick={() => this.getAllCompanies(this.state.company)}>Załaduj kontrahentów</Button>{' '}
+                                <Button color="success" href = "/add-company-client">Dodaj kontrahenta</Button>{' '}
+                                <Button color="info" href="/add-company">Dodaj firmę</Button>
                                 </Form>
                                 <br/>
-                                <Button color="success">Załaduj kontrahentów</Button>{'   '}
-                                <Button color="success" href = "/add-company-client">Dodaj kontrahenta</Button>{'   '}
-                                <Button color="info" href="/add-company">Dodaj firmę</Button>
+
                             </div>
                         </CardBody>
                     </Card>
@@ -38,10 +64,9 @@ export default class ClientsPage extends Component {
                     <Card>
                         <CardHeader>Lista kontrahentów</CardHeader>
                         <CardBody>
-                          <Table striped>
+                          <Table bordered>
                             <thead>
                               <tr>
-                                <th>#</th>
                                 <th>Nazwa firmy</th>
                                 <th>Miasto</th>
                                 <th>Ulica</th>
@@ -53,14 +78,22 @@ export default class ClientsPage extends Component {
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <th scope="row">2</th>
-                                <td></td>
-                              </tr>
+                                 {
+                                   this.state.companies.map(item => {
+                                        return (
+                                            <tr>
+                                               <td key = {item}>{item.companyName}</td>
+                                               <td key = {item}>{item.city}</td>
+                                               <td key = {item}>{item.street}</td>
+                                               <td key = {item}>{item.postalCode}</td>
+                                               <td key = {item}>{item.country}</td>
+                                               <td key = {item}>{item.phone}</td>
+                                               <td key = {item}>{item.mail}</td>
+                                               <td key = {item}>{item.nip}</td>
+                                            </tr>
+                                        );
+                                   })
+                                 }
                             </tbody>
                           </Table>
                         </CardBody>

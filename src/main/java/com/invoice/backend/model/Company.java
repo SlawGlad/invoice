@@ -10,7 +10,9 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true )
     private String companyName;
+
     private String city;
     private String street;
     private String postalCode;
@@ -20,7 +22,7 @@ public class Company {
     private String accountNumber;
     private String mail;
 
-    @ManyToMany
+    @OneToMany
     Set<CompanyClient> companyClients;
 
     public Company(){
@@ -126,4 +128,6 @@ public class Company {
                 ", companyClients=" + companyClients +
                 '}';
     }
+
+    public void addCompanyClient(CompanyClient companyClient){companyClients.add(companyClient);}
 }

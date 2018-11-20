@@ -21,10 +21,6 @@ public class CompanyClient {
     private String nip;
     private String mail;
 
-    @ManyToMany(mappedBy = "companyClients")
-    @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
-    Set<Company> companies;
-
     public CompanyClient(){
     }
 
@@ -96,14 +92,6 @@ public class CompanyClient {
         this.nip = nip;
     }
 
-    public Set<Company> getCompanies() {
-        return companies;
-    }
-
-    public void setCompanies(Set<Company> companies) {
-        this.companies = companies;
-    }
-
     @Override
     public String toString() {
         return "CompanyClient{" +
@@ -116,7 +104,6 @@ public class CompanyClient {
                 ", phone='" + phone + '\'' +
                 ", mail='" + mail + '\'' +
                 ", nip='" + nip + '\'' +
-                ", companies=" + companies +
                 '}';
     }
 }

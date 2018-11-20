@@ -108,7 +108,7 @@ export default class AddClientPage extends React.Component {
             this.setState(this.baseState);
             this.setState({visible: true});
 
-            axios.post('http://localhost:8080/api/add-company-client', {
+            axios.post('http://localhost:8080/api/add-company-client' + '?company=' + company, {
                 companyName: clientName,
                 city: city,
                 street: street,
@@ -117,9 +117,6 @@ export default class AddClientPage extends React.Component {
                 phone: phone,
                 mail: mail,
                 nip: nip,
-                company: {
-                    companyName: company
-                }
             }, {
                 headers: {
                     'Accept': 'application/json',
@@ -149,8 +146,8 @@ export default class AddClientPage extends React.Component {
                                         danych kontrahent
                                         zostanie przypisany do wybranej firmy.</p><br/>
                                     <Form>
-                                        <CompanyFilterDropdown labelName='Wybierz firmę' categoryLabelWidth={3}
-                                                                categoryInputWidth={9} value={this.state.company}
+                                        <CompanyFilterDropdown labelName='Wybierz firmę' companyLabelWidth={3}
+                                                                companyInputWidth={9} value={this.state.company}
                                                                 onChangeValue={this.handleCompanyChange}/>
                                         <FormGroup row >
                                             <Label for="clientName" sm={3}>Nazwa klienta</Label>
