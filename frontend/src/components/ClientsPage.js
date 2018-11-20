@@ -27,7 +27,7 @@ export default class ClientsPage extends Component {
                                 </Form>
                                 <br/>
                                 <Button color="success">Załaduj kontrahentów</Button>{'   '}
-                                <Button color="success">Dodaj kontrahenta</Button>{'   '}
+                                <Button color="success" href = "/add-company-client">Dodaj kontrahenta</Button>{'   '}
                                 <Button color="info" href="/add-company">Dodaj firmę</Button>
                             </div>
                         </CardBody>

@@ -3,8 +3,6 @@ import {Alert,Button,Card,CardBody,CardHeader,Col,Form,FormGroup,Input,InputGrou
         ModalBody,ModalFooter,ModalHeader,Row} from 'reactstrap';
 import axios from "axios";
 
-import CompanyFilterDropdown from "./CompanyFilterDropdown";
-
 export default class AddCompanyPage extends React.Component {
 
     constructor(props) {
@@ -22,7 +20,6 @@ export default class AddCompanyPage extends React.Component {
             accountNumber: '',
             visible: false,
             modal: false,
-            company: '',
         };
         this.baseState = this.state;
 
@@ -39,13 +36,7 @@ export default class AddCompanyPage extends React.Component {
 
         this.onDismiss = this.onDismiss.bind(this);
         this.toggle = this.toggle.bind(this);
-
-        this.handleCompany = this.handleCompany.bind(this);
     }
-
-        handleCompany(e) {
-            this.setState({company: e.target.value})
-        }
 
     handleCompanyNameChange(e) {
         this.setState({companyName: e.target.value})
@@ -156,9 +147,6 @@ export default class AddCompanyPage extends React.Component {
                                         danych firma
                                         zostanie umieszczeona w bazie.</p><br/>
                                     <Form>
-                                        <CompanyFilterDropdown labelName='Firma' companyLabelWidth={3}
-                                                                companyInputWidth={9} value={this.state.company}
-                                                                onChangeValue={this.handleCompany}/>
                                         <FormGroup row >
                                             <Label for="companyName" sm={3}>Nazwa firmy</Label>
                                             <Col sm={9}>
@@ -245,7 +233,7 @@ export default class AddCompanyPage extends React.Component {
                                                 <Button outline color="primary" onClick={this.handleClick}>Dodaj
                                                     Firmę</Button>
                                             </Col>
-                                        </FormGroup>
+                                        </FormGroup><br/>
                                         <Alert color="success" isOpen={this.state.visible} toggle={this.onDismiss}>
                                             Firma została dodana do bazy.
                                         </Alert>

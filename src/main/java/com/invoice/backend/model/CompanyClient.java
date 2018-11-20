@@ -1,5 +1,7 @@
 package com.invoice.backend.model;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -20,6 +22,7 @@ public class CompanyClient {
     private String mail;
 
     @ManyToMany(mappedBy = "companyClients")
+    @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
     Set<Company> companies;
 
     public CompanyClient(){

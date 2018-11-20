@@ -20,8 +20,8 @@ public class CompanyController {
         companyRepository.save(company);
     }
 
-    @GetMapping("/category")
-    public List<String> getAllCategoriesNames() {
+    @GetMapping("/companies")
+    public List<String> getAllCompaniesName(){
         return companyRepository.findAllCompanyNames();
     }
 

@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TaxRatesRepository extends JpaRepository<TaxRates, Long> {
+public interface TaxRatesRepository extends CrudRepository<TaxRates, Long> {
 }
