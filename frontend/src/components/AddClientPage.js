@@ -3,11 +3,14 @@ import {Alert,Button,Card,CardBody,CardHeader,Col,Form,FormGroup,Input,InputGrou
         ModalBody,ModalFooter,ModalHeader,Row} from 'reactstrap';
 import axios from "axios";
 import CompanyFilterDropdown from "./CompanyFilterDropdown";
+import CompanyClientController from "../controllers/CompanyClientController"
 
 export default class AddClientPage extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.companyClientController = new CompanyClientController();
 
         this.state = {
             company: '',
@@ -25,6 +28,7 @@ export default class AddClientPage extends React.Component {
         };
         this.baseState = this.state;
 
+        this.createNewCompanyClient = this.createNewCompanyClient.bind(this);
         this.handleCompanyChange = this.handleCompanyChange.bind(this);
         this.handleClientNameChange = this.handleClientNameChange.bind(this);
         this.handleCityName = this.handleCityName.bind(this);
@@ -38,6 +42,12 @@ export default class AddClientPage extends React.Component {
 
         this.onDismiss = this.onDismiss.bind(this);
         this.toggle = this.toggle.bind(this);
+    }
+
+    createNewCompanyClient(){
+        this.companyClientController.createNewCompanyClient(this.state.company,this.state.clientName,this.state.city,this.state.street,
+                              this.state.postalCode, this.state.country, this.state.phone,
+                              this.state.mail,this.state.nip);
     }
 
     handleCompanyChange(e) {
@@ -108,27 +118,7 @@ export default class AddClientPage extends React.Component {
             this.setState(this.baseState);
             this.setState({visible: true});
 
-            axios.post('http://localhost:8080/api/add-company-client' + '?company=' + company, {
-                companyName: clientName,
-                city: city,
-                street: street,
-                postalCode: postalCode,
-                country: country,
-                phone: phone,
-                mail: mail,
-                nip: nip,
-            }, {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(function (response) {
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+            this.createNewCompanyClient();
         }
     }
 

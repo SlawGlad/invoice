@@ -2,11 +2,14 @@ import React from 'react';
 import {Alert,Button,Card,CardBody,CardHeader,Col,Form,FormGroup,Input,InputGroup,InputGroupAddon,Label,Modal,
         ModalBody,ModalFooter,ModalHeader,Row} from 'reactstrap';
 import axios from "axios";
+import CompanyController from "../controllers/CompanyController"
 
 export default class AddCompanyPage extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.companyController = new CompanyController();
 
         this.state = {
             companyName: '',
@@ -23,6 +26,7 @@ export default class AddCompanyPage extends React.Component {
         };
         this.baseState = this.state;
 
+        this.createNewCompany = this.createNewCompany.bind(this);
         this.handleCompanyNameChange = this.handleCompanyNameChange.bind(this);
         this.handleCityName = this.handleCityName.bind(this);
         this.handleStreet = this.handleStreet.bind(this);
@@ -36,6 +40,12 @@ export default class AddCompanyPage extends React.Component {
 
         this.onDismiss = this.onDismiss.bind(this);
         this.toggle = this.toggle.bind(this);
+    }
+
+    createNewCompany(){
+        this.companyController.createNewCompany(this.state.companyName,this.state.city,this.state.street,
+                              this.state.postalCode, this.state.country, this.state.phone,
+                              this.state.mail,this.state.nip, this.state.accountNumber);
     }
 
     handleCompanyNameChange(e) {
@@ -106,29 +116,7 @@ export default class AddCompanyPage extends React.Component {
             this.setState(this.baseState);
             this.setState({visible: true});
 
-            axios.post('http://localhost:8080/api/add-company', {
-
-                companyName: companyName,
-                city: city,
-                street: street,
-                postalCode: postalCode,
-                country: country,
-                phone: phone,
-                mail: mail,
-                nip: nip,
-                accountNumber: accountNumber
-            }, {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(function (response) {
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+            this.createNewCompany();
         }
     }
 
