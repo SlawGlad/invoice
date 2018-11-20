@@ -28,7 +28,7 @@ public class Invoice {
 
     @ManyToOne
     @JoinColumn(name = "issuing_FK")
-    private User user;
+    private AppUser appUser;
 
     @OneToMany
     @JoinColumn(name = "invoice_FK")
@@ -105,12 +105,12 @@ public class Invoice {
         this.companyClient = companyClient;
     }
 
-    public User getUser() {
-        return user;
+    public AppUser getAppUser() {
+        return appUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 
     public Set<InvoiceDetails> getInvoiceDetails() {
@@ -133,7 +133,7 @@ public class Invoice {
                 ", grossAmount=" + grossAmount +
                 ", company=" + company +
                 ", companyClient=" + companyClient +
-                ", user=" + user +
+                ", appUser=" + appUser +
                 ", invoiceDetails=" + invoiceDetails +
                 '}';
     }

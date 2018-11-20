@@ -103,16 +103,6 @@ export default class AddCompanyPage extends React.Component {
             this.setState({modal: true})
         }
         else {
-            var companyName = this.state.companyName;
-            var city = this.state.city;
-            var street = this.state.street;
-            var postalCode = this.state.postalCode;
-            var country = this.state.country;
-            var phone = this.state.phone;
-            var mail = this.state.mail;
-            var nip = this.state.nip;
-            var accountNumber = this.state.accountNumber;
-
             this.setState(this.baseState);
             this.setState({visible: true});
 

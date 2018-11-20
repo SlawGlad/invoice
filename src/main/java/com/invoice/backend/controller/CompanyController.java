@@ -13,7 +13,7 @@ import java.util.List;
 public class CompanyController {
 
     @Autowired
-    CompanyRepository companyRepository;
+    private CompanyRepository companyRepository;
 
     @PostMapping("/add-company")
     public void createNewCompany(@Valid @RequestBody Company company){

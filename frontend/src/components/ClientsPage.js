@@ -49,10 +49,8 @@ export default class ClientsPage extends Component {
                                 <CompanyFilterDropdown labelName='Firma' companyLabelWidth={1}
                                                        companyInputWidth={4} value={this.state.company}
                                                        onChangeValue={this.handleCompanyChange}/>
-                                <Button color="success" onClick={() =>
-                                    this.getAllCompanies(this.state.company)}>Załaduj kontrahentów</Button>{' '}
-                                <Button color="success" href = "/add-company-client">Dodaj kontrahenta</Button>{' '}
-                                <Button color="info" href="/add-company">Dodaj firmę</Button>
+                                <Button color="primary" onClick={() =>
+                                    this.getAllCompanies(this.state.company)}>Załaduj kontrahentów</Button>
                                 </Form>
                                 <br/>
 

@@ -105,16 +105,6 @@ export default class AddClientPage extends React.Component {
             this.setState({modal: true})
         }
         else {
-            var company = this.state.company;
-            var clientName = this.state.clientName;
-            var city = this.state.city;
-            var street = this.state.street;
-            var postalCode = this.state.postalCode;
-            var country = this.state.country;
-            var phone = this.state.phone;
-            var mail = this.state.mail;
-            var nip = this.state.nip;
-
             this.setState(this.baseState);
             this.setState({visible: true});
 
