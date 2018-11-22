@@ -1,5 +1,7 @@
 package com.invoice.backend.model;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Set;
@@ -12,11 +14,14 @@ public class Invoice {
     private Long id;
 
     private String invoiceNumber;
-    private String saleDate;
-    private String paymentDate;
+    private String dateIssue;
+    private String dateService;
+    private String datePayment;
     private String placeOfIssue;
-    private BigDecimal netAmount;
-    private BigDecimal grossAmount;
+    private String paymentMethod;
+    private BigDecimal netValue;
+    private BigDecimal amountTax;
+    private BigDecimal grossValue;
 
     @ManyToOne
     @JoinColumn(name = "seller_FK")
@@ -32,6 +37,7 @@ public class Invoice {
 
     @OneToMany
     @JoinColumn(name = "invoice_FK")
+    @Cascade(org.hibernate.annotations.CascadeType.PERSIST)
     private Set<InvoiceDetails> invoiceDetails;
 
     public Invoice(){
@@ -49,20 +55,28 @@ public class Invoice {
         this.invoiceNumber = invoiceNumber;
     }
 
-    public String getSaleDate() {
-        return saleDate;
+    public String getDateIssue() {
+        return dateIssue;
     }
 
-    public void setSaleDate(String saleDate) {
-        this.saleDate = saleDate;
+    public void setDateIssue(String dateIssue) {
+        this.dateIssue = dateIssue;
     }
 
-    public String getPaymentDate() {
-        return paymentDate;
+    public String getDateService() {
+        return dateService;
     }
 
-    public void setPaymentDate(String paymentDate) {
-        this.paymentDate = paymentDate;
+    public void setDateService(String dateService) {
+        this.dateService = dateService;
+    }
+
+    public String getDatePayment() {
+        return datePayment;
+    }
+
+    public void setDatePayment(String datePayment) {
+        this.datePayment = datePayment;
     }
 
     public String getPlaceOfIssue() {
@@ -73,20 +87,36 @@ public class Invoice {
         this.placeOfIssue = placeOfIssue;
     }
 
-    public BigDecimal getNetAmount() {
-        return netAmount;
+    public String getPaymentMethod() {
+        return paymentMethod;
     }
 
-    public void setNetAmount(BigDecimal netAmount) {
-        this.netAmount = netAmount;
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
-    public BigDecimal getGrossAmount() {
-        return grossAmount;
+    public BigDecimal getNetValue() {
+        return netValue;
     }
 
-    public void setGrossAmount(BigDecimal grossAmount) {
-        this.grossAmount = grossAmount;
+    public void setNetValue(BigDecimal netValue) {
+        this.netValue = netValue;
+    }
+
+    public BigDecimal getAmountTax() {
+        return amountTax;
+    }
+
+    public void setAmountTax(BigDecimal amountTax) {
+        this.amountTax = amountTax;
+    }
+
+    public BigDecimal getGrossValue() {
+        return grossValue;
+    }
+
+    public void setGrossValue(BigDecimal grossValue) {
+        this.grossValue = grossValue;
     }
 
     public Company getCompany() {
@@ -126,15 +156,20 @@ public class Invoice {
         return "Invoice{" +
                 "id=" + id +
                 ", invoiceNumber='" + invoiceNumber + '\'' +
-                ", saleDate='" + saleDate + '\'' +
-                ", paymentDate='" + paymentDate + '\'' +
+                ", dateIssue='" + dateIssue + '\'' +
+                ", dateService='" + dateService + '\'' +
+                ", datePayment='" + datePayment + '\'' +
                 ", placeOfIssue='" + placeOfIssue + '\'' +
-                ", netAmount=" + netAmount +
-                ", grossAmount=" + grossAmount +
+                ", paymentMethod='" + paymentMethod + '\'' +
+                ", netValue=" + netValue +
+                ", amountTax=" + amountTax +
+                ", grossValue=" + grossValue +
                 ", company=" + company +
                 ", companyClient=" + companyClient +
                 ", appUser=" + appUser +
                 ", invoiceDetails=" + invoiceDetails +
                 '}';
     }
+
+    public void addInvoiceDetails(InvoiceDetails invoiceDetail){invoiceDetails.add(invoiceDetail);}
 }

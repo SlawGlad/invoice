@@ -17,6 +17,6 @@ public interface CompanyRepository extends CrudRepository<Company,Long> {
             "ORDER BY company_name", nativeQuery = true)
     List<String> findAllCompanyNames();
 
-    Company findByCompanyName(@Param("name") String companyName);
-
+    //Company findByCompanyName(@Param("name") String companyName);
+    Company findByCompanyName(String companyName);
 }
