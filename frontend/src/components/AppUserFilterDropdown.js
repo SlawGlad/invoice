@@ -1,31 +1,31 @@
 import React, {Component} from "react";
 import {FormGroup, Input, Label,Col} from 'reactstrap';
-import CompanyController from "../controllers/CompanyController";
+import UserController from "../controllers/UserController";
 
-export default class CompanyFilterDropdown extends Component {
+export default class AppUserFilterDropdown extends Component {
     constructor(props) {
         super(props);
-        this.companyController = new CompanyController();
+        this.userController = new UserController();
 
         this.state = {
-            companies: ['']
+            users: ['']
         }
     }
 
     componentDidMount() {
-        this.getAllCompaniesNames();
+        this.getAllUserNames();
     }
 
     render() {
         return (
-                <Input type="select" name="company"
-                       id="exampleSelect1"
+                <Input type="select" name="users"
+                       id="users"
                        value={[this.props.value]}
                        onChange={this.props.onChangeValue}>
                     <option value="" disabled selected>{this.props.labelName}</option>
                     <option></option>
                     {
-                        this.state.companies.map(item => {
+                        this.state.users.map(item => {
                             return (
                                 <option key = {item}>{item}</option>
                             );
@@ -35,13 +35,13 @@ export default class CompanyFilterDropdown extends Component {
         );
     }
 
-    getAllCompaniesNames() {
+    getAllUserNames() {
         let self = this;
-        this.companyController.getAllCompanies()
+        this.userController.getAllUsers()
             .then(response => {
                 self.setState(
                     {
-                        companies: response.data
+                        users: response.data
                     }
                 )
             })

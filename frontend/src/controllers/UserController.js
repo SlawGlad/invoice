@@ -25,4 +25,9 @@ export default class CompanyController {
                     console.log(error);
                 });
     }
+
+    getAllUsers() {
+        var response = axios.get(this.endpoint + 'users');
+        return response;
+    }
 }

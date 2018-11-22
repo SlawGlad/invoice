@@ -126,9 +126,12 @@ export default class AddClientPage extends React.Component {
                                         danych kontrahent
                                         zostanie przypisany do wybranej firmy.</p><br/>
                                     <Form>
-                                        <CompanyFilterDropdown labelName='Wybierz firmę' companyLabelWidth={3}
-                                                                companyInputWidth={9} value={this.state.company}
+                                        <FormGroup row>
+                                            <Col sm={12}>
+                                                <CompanyFilterDropdown labelName='Wybierz firmę' value={this.state.company}
                                                                 onChangeValue={this.handleCompanyChange}/>
+                                            </Col>
+                                        </FormGroup>
                                         <FormGroup row >
                                             <Label for="clientName" sm={3}>Nazwa klienta</Label>
                                             <Col sm={9}>

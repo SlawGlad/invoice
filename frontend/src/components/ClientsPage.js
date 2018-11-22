@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Button, Card, CardBody, CardHeader, Col, Form, ListGroup, Table} from "reactstrap";
+import {Button, Card, CardBody, CardHeader, Col, Form, ListGroup, Table, FormGroup, Row} from "reactstrap";
 import CompanyFilterDropdown from "./CompanyFilterDropdown";
 import CompanyClientController from "../controllers/CompanyClientController";
 
@@ -46,14 +46,16 @@ export default class ClientsPage extends Component {
                         <CardBody>
                             <div className="filter-component">
                                 <Form>
-                                <CompanyFilterDropdown labelName='Firma' companyLabelWidth={1}
-                                                       companyInputWidth={4} value={this.state.company}
+                                <FormGroup row>
+                                    <Col sm={4}>
+                                        <CompanyFilterDropdown labelName='Wybierz firmę' value={this.state.company}
                                                        onChangeValue={this.handleCompanyChange}/>
+                                    </Col>
                                 <Button color="primary" onClick={() =>
                                     this.getAllCompanies(this.state.company)}>Załaduj kontrahentów</Button>
+                                </FormGroup>
                                 </Form>
                                 <br/>
-
                             </div>
                         </CardBody>
                     </Card>

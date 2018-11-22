@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {Button, Card, CardBody, CardHeader, Col, Form, ListGroup,Table} from "reactstrap";
 
-
 export default class InvoicesPage extends Component {
     constructor(props) {
         super(props);
@@ -11,7 +10,6 @@ export default class InvoicesPage extends Component {
         };
 
     }
-
 
     render() {
         return (
@@ -23,11 +21,9 @@ export default class InvoicesPage extends Component {
                         <CardBody>
                             <div className="filter-component">
                                 <Form>
-
+                                    <Button color="primary">Załaduj faktury</Button>
                                 </Form>
                                 <br/>
-                                <Button color="success">Załaduj faktury</Button>{'   '}
-                                <Button color="primary">Dodaj fakturę</Button>
                             </div>
                         </CardBody>
                     </Card>
