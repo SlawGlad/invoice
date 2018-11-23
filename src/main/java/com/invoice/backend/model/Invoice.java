@@ -22,6 +22,7 @@ public class Invoice {
     private BigDecimal netValue;
     private BigDecimal amountTax;
     private BigDecimal grossValue;
+    private String accountNumber;
 
     @ManyToOne
     @JoinColumn(name = "seller_FK")
@@ -45,6 +46,14 @@ public class Invoice {
 
     public Long getId() {
         return id;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
     public String getInvoiceNumber() {
@@ -164,12 +173,11 @@ public class Invoice {
                 ", netValue=" + netValue +
                 ", amountTax=" + amountTax +
                 ", grossValue=" + grossValue +
+                ", accountNumber='" + accountNumber + '\'' +
                 ", company=" + company +
                 ", companyClient=" + companyClient +
                 ", appUser=" + appUser +
                 ", invoiceDetails=" + invoiceDetails +
                 '}';
     }
-
-    public void addInvoiceDetails(InvoiceDetails invoiceDetail){invoiceDetails.add(invoiceDetail);}
 }

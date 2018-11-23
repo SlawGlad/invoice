@@ -72,7 +72,6 @@ class CustomNavbar extends React.Component {
                                  </DropdownToggle>
                                  <DropdownMenu>
                                    <DropdownItem href="/admin-panel/add-user">Dodaj użytkownika</DropdownItem>
-                                   <DropdownItem href="/admin-panel/delete-company-client">Usuń kontrahenta</DropdownItem>
                                  </DropdownMenu>
                             </ButtonDropdown>
                         </NavItem>

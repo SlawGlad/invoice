@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -36,8 +37,13 @@ public class InvoiceController {
         invoice.setCompany(company);
         invoice.setCompanyClient(companyClient);
         invoice.setAppUser(appUser);
-        //invoice.addInvoiceDetails(invoiceDetails);
         invoiceRepository.save(invoice);
+    }
+
+    @GetMapping("invoices")
+    public List<Invoice> getAllCompanyInvoice(@RequestParam(value = "company") String companyName){
+        Company company = companyRepository.findByCompanyName(companyName);
+        return invoiceRepository.findById(company.getId());
     }
 
 }

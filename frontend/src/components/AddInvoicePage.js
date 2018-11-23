@@ -1,5 +1,6 @@
 import React, {Component} from "react";
-import {Button, Card, CardBody, CardHeader, Col, Form, ListGroup,Table, FormGroup, Row, Input} from "reactstrap";
+import {Button, Card, CardBody, CardHeader, Col, Form, ListGroup,Table, FormGroup, Row, Input,Modal,
+        ModalBody,ModalFooter,ModalHeader, Alert} from "reactstrap";
 import CompanyFilterDropdown from "./CompanyFilterDropdown"
 import CompanyClientController from "../controllers/CompanyClientController";
 import AppUserFilterDropdown from "./AppUserFilterDropdown";
@@ -47,6 +48,8 @@ export default class AddInvoicePage extends Component {
             sumNetValue:'',
             sumAmountTax: '',
             sumGrossValue: '',
+            visible: false,
+            modal: false,
         };
 
         this.createNewInvoice = this.createNewInvoice.bind(this);
@@ -73,6 +76,23 @@ export default class AddInvoicePage extends Component {
         this.handleVatValueChangeC = this.handleVatValueChangeC.bind(this);
         this.handleCalculate = this.handleCalculate.bind(this);
         this.handleUserChange = this.handleUserChange.bind(this);
+
+        this.toggle = this.toggle.bind(this);
+        this.onDismiss = this.onDismiss.bind(this);
+        this.baseState = this.state;
+        this.handleAddInvoice = this.handleAddInvoice.bind(this);
+    }
+
+    toggle() {
+        this.setState({
+            modal: !this.state.modal
+        });
+    }
+
+    onDismiss() {
+        this.setState({
+            visible: false
+        })
     }
 
     createNewInvoice(){
@@ -80,7 +100,24 @@ export default class AddInvoicePage extends Component {
                  this.state.dateService, this.state.datePayment, this.state.dateIssue,this.state.placeName,this.state.paymentMethod,
                  this.state.sumNetValue,this.state.sumAmountTax,this.state.sumGrossValue,this.state.productName,this.state.quantity,
                  this.state.netPrice,this.state.vatValue,this.state.productNameB,this.state.quantityB,this.state.netPriceB,
-                 this.state.vatValueB,this.state.productNameC,this.state.quantityC,this.state.netPriceC,this.state.vatValueC);
+                 this.state.vatValueB,this.state.productNameC,this.state.quantityC,this.state.netPriceC,this.state.vatValueC,
+                 this.state.accountNumber);
+    }
+
+    handleAddInvoice(e){
+        if (this.state.company === '' || this.state.companyClient === '' || this.state.users === '' || this.state.invoiceNumber === ''
+            || this.state.dateService === '' || this.state.datePayment === '' || this.state.dateIssue === ''
+            || this.state.placeName === '' || this.state.paymentMethod === '' || this.state.sumNetValue === ''
+            || this.state.productName === '' || this.state.quantity === '' || this.state.netPrice === ''
+            || this.state.vatValue === '' || this.state.accountNumber === '') {
+            this.setState({modal: true})
+        }
+        else {
+            this.setState(this.baseState);
+            this.setState({visible: true});
+
+            this.createNewInvoice();
+        }
     }
 
     handleCompanyChange(e) {
@@ -456,8 +493,20 @@ export default class AddInvoicePage extends Component {
                                 </Row>
                               </CardBody>
                             </Card><br/>
-                              <Button color="success" onClick={() =>
-                                    this.createNewInvoice()}>Dodaj fakturę</Button>
+                              <Button color="success" onClick={this.handleAddInvoice}>Dodaj fakturę</Button>
+                              <Alert color="success" isOpen={this.state.visible} toggle={this.onDismiss}>
+                                            Kontrahent został dodany do bazy.
+                              </Alert>
+                              <Modal isOpen={this.state.modal} toggle={this.toggle}>
+                                    <ModalHeader toggle={this.toggle}>Uzupełnij pola wymagane</ModalHeader>
+                                    <ModalBody>
+                                        Przed dodaniem faktury uzupełnij wszystkie pola. Uzupełnij wymagane pola
+                                        i spróbuj ponownie.
+                                    </ModalBody>
+                                    <ModalFooter>
+                                        <Button color="primary" onClick={this.toggle}>OK</Button>
+                                    </ModalFooter>
+                              </Modal>
                         </CardBody>
                     </Card>
                 </Col>

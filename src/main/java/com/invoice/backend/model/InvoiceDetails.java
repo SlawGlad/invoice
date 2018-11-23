@@ -13,6 +13,7 @@ public class InvoiceDetails {
     private String productName;
     private BigDecimal unitPrice;
     private Integer quantity;
+    private Integer vatRate;
 
     @ManyToOne
     public Invoice invoice;
@@ -56,6 +57,14 @@ public class InvoiceDetails {
         this.quantity = quantity;
     }
 
+    public Integer getVatRate() {
+        return vatRate;
+    }
+
+    public void setVatRate(Integer vatRate) {
+        this.vatRate = vatRate;
+    }
+
     @Override
     public String toString() {
         return "InvoiceDetails{" +
@@ -63,6 +72,8 @@ public class InvoiceDetails {
                 ", productName='" + productName + '\'' +
                 ", unitPrice=" + unitPrice +
                 ", quantity=" + quantity +
+                ", vatRate=" + vatRate +
+                ", invoice=" + invoice +
                 '}';
     }
 }
